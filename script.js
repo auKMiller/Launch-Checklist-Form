@@ -30,28 +30,18 @@ window.addEventListener("load", function() {
          launchStatus.innerHTML = "Shuttle not ready for launch";
          launchStatus.style.color = "red";
       }
-   
-
-      
+      if (cargoM > 10000) {
+         cargoStatus.innerHTML =  "Too much mass for the shuttle to take off.";
+         document.getElementById("faultyItems").style.visibility = "visible";
+         launchStatus.innerHTML = "Shuttle not ready for launch";
+         launchStatus.style.color = "red"; 
+      } else {
+         launchStatus.style.color = "green";
+         launchStatus.innerHTML = "Shuttle is ready for launch";
+      }
          // stop the form submission
           event.preventDefault();
 
-      
-            function myChecklist() {
-               document.getElementById("faultyItems");
-            }
-            // The list of shuttle requirements, the div with the id faultyItems, 
-            //should be updated if something is not ready for launch.
-
-            // If the user submits a fuel level that is too low (less than 10,000 liters), 
-            //change faultyItems to visible with an updated fuel status stating that there 
-            //is not enough fuel for the journey. The text of the h2 element, launchStatus, 
-            //should also change to "Shuttle not ready for launch" and the color should change 
-            //to red.
-            
-            // If the user submits a cargo mass that is too large (more than 10,000 kilograms), change the list to visible with an updated cargo status stating that there is too much mass for the shuttle to take off. The text of launchStatus should also change to "Shuttle not ready for launch" and the color should change to red.
-            
-            // If the shuttle is ready to launch, change the text of launchStatus to green and display "Shuttle is ready for launch"
    });
 });
 
