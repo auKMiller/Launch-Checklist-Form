@@ -17,36 +17,45 @@ window.addEventListener("load", function() {
       let launchStatus = document.getElementById("launchStatus");
       if (fuelLevel.value === "" || cargoMass.value === "" || pilotName.value === "" || copilotName.value === ""){
          alert("All fields are required!");
-         console.log(0)
+         document.getElementById("faultyItems").style.visibility = "hidden";
+         launchStatus.innerHTML = "Shuttle not ready for launch";
+         launchStatus.style.color = "red";
+         console.log(0);
       } else if (isNaN(fuelL) || isNaN(cargoM) || !isNaN(pilotN) || !isNaN(coPi)) {
          alert("Must be valid information.");
+         document.getElementById("faultyItems").style.visibility = "hidden";
+         launchStatus.innerHTML = "Shuttle not ready for launch";
+         launchStatus.style.color = "red";
          console.log(1);
-       } else { 
-          document.getElementById("faultyItems").style.visibility = "visible";
-          pilotStatus.innerHTML = `Pilot ${pilotN} is Ready.`
-          copilotStatus.innerHTML = `Copilot ${coPi} is Ready.`
-          console.log(2);
-          }  
+        } 
          if (fuelL < 10000 && cargoM > 10000) {
+            pilotStatus.innerHTML = `Pilot ${pilotN} is Ready.`
+            copilotStatus.innerHTML = `Copilot ${coPi} is Ready.`
             fuelStatus.innerHTML =  "Not enough fuel for the journey.";
             cargoStatus.innerHTML =  "Too much mass for the shuttle to take off.";
             document.getElementById("faultyItems").style.visibility = "visible";
             launchStatus.innerHTML = "Shuttle not ready for launch";
             launchStatus.style.color = "red";
             console.log(3);   
-         } else if (fuelL < 10000 && cargoM <= 10000) {
+         } else if (fuelL < 10000 && cargoM < 10000 && fuelL != "") {
+            pilotStatus.innerHTML = `Pilot ${pilotN} is Ready.`
+            copilotStatus.innerHTML = `Copilot ${coPi} is Ready.`
             fuelStatus.innerHTML =  "Not enough fuel for the journey.";
             document.getElementById("faultyItems").style.visibility = "visible";
             launchStatus.innerHTML = "Shuttle not ready for launch";
             launchStatus.style.color = "red";
             console.log(4);
          } else if (fuelL >= 10000 && cargoM > 10000) {
+            pilotStatus.innerHTML = `Pilot ${pilotN} is Ready.`
+            copilotStatus.innerHTML = `Copilot ${coPi} is Ready.`
             cargoStatus.innerHTML =  "Too much mass for the shuttle to take off.";
             document.getElementById("faultyItems").style.visibility = "visible";
             launchStatus.innerHTML = "Shuttle not ready for launch";
             launchStatus.style.color = "red";
             console.log(5); 
-          } else {
+          } else if (fuelL >= 10000 && cargoM <10000) {
+            pilotStatus.innerHTML = `Pilot ${pilotN} is Ready.`
+            copilotStatus.innerHTML = `Copilot ${coPi} is Ready.`
             launchStatus.style.color = "green";
             launchStatus.innerHTML = "Shuttle is ready for launch";
             document.getElementById("faultyItems").style.visibility = "visible";
